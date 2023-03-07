@@ -1,0 +1,32 @@
+package com.app.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.app.dto.CampaignAdminDto;
+import com.app.pojos.Campaign;
+import com.app.pojos.User;
+
+public interface CampaignRepository extends JpaRepository<Campaign, Integer> {
+	
+	List<Campaign> findByOb(User user);
+	
+//	
+//	private String createdBy;
+//    private String name;
+//    private String email;
+//    private String title;
+//    private double amount;
+//    private LocalDate endDate;
+//    private String ailment;
+//    private BenificaryUser benificaryUser;
+//    private BenificaryRelative benificaryRelative;
+//    private BenificaryOther benificaryOther;
+	
+	
+	@Query(value="SELECT c.*, u.first_Name as createdBy FROM Campaign c LEFT JOIN Users u On c.user_id=u.id WHERE c.active=false",nativeQuery = true)
+	List<Object> findByActive();
+   
+}

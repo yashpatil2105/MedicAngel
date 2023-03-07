@@ -1,0 +1,30 @@
+package com.app.services;
+
+import java.util.Set;
+
+import org.springframework.security.core.Authentication;
+
+import com.app.pojos.BenificaryOther;
+import com.app.pojos.BenificaryRelative;
+import com.app.pojos.BenificaryUser;
+import com.app.pojos.Campaign;
+import com.app.pojos.User;
+
+public interface UserService {
+
+	User addNewUser(User user);
+
+	BenificaryUser addNewUserBenificary(BenificaryUser user);
+
+	BenificaryRelative addNewRelativeBenificary(BenificaryRelative relative);
+
+	BenificaryOther addNewOtherBenificary(BenificaryOther other);
+
+	Campaign addNewcampaign(Authentication auth , Campaign campaign);
+
+	User getUser(String email);
+
+	Set<Campaign> getCampaign(String email);
+
+	
+}

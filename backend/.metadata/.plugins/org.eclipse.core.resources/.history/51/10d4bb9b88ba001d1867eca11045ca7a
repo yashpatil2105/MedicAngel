@@ -1,0 +1,33 @@
+package com.app.services;
+
+import java.util.Set;
+
+import org.springframework.security.core.Authentication;
+
+import com.app.customexception.ResourceNotFoundException;
+import com.app.pojos.BenificaryOther;
+import com.app.pojos.BenificaryRelative;
+import com.app.pojos.BenificaryUser;
+import com.app.pojos.Campaign;
+import com.app.pojos.User;
+
+public interface UserService {
+
+	User addNewUser(User user);
+
+	BenificaryUser addNewUserBenificary(Integer campId,BenificaryUser buser);
+
+	BenificaryRelative addNewRelativeBenificary(Integer campId,BenificaryRelative relative);
+
+	BenificaryOther addNewOtherBenificary(Integer campId, BenificaryOther other);
+
+	Campaign addNewcampaign(Authentication auth , Campaign campaign);
+
+	User getUser(String email);
+
+	Set<Campaign> getCampaigns(String email);
+
+	int updateUser(User detachedUser) throws ResourceNotFoundException;
+
+	
+}

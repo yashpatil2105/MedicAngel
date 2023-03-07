@@ -1,0 +1,62 @@
+package com.app.pojos;
+
+@Entity
+@Getter
+@Setter
+@ToString
+public class \ extends BaseEntity {
+
+	private double amount;
+
+	@Column(name = "current_amount")
+	private double currentAmount;
+
+	@Column(name = "end_date")
+	private LocalDate endDate;
+
+	@Column(length = 50)
+	private String title;
+
+	private boolean active;
+
+	@Column(name = "hospital_name", length = 100)
+	private String hospitalName;
+
+	@Column(name = "city_of_hospital", length = 50)
+	private String cityOfHospital;
+
+	@Column(length = 100)
+	private String ailment;
+
+	@Column(name = "no_Of_Donar")
+	private int noOfDonar;
+	
+	@Column(name = "image_path")
+	private String imagePath;
+	
+	
+	@Lob()
+	@JsonProperty(access = Access.WRITE_ONLY)
+	private Blob story;
+	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(
+			  name = "campaign_donar", 
+			  joinColumns = @JoinColumn(name = "campaign_id"), 
+			  inverseJoinColumns = @JoinColumn(name = "donar_id"))
+	private Set<Donar> donars;
+   
+	@JsonIgnore
+	@ManyToOne()
+	@JoinColumn(name = "user_id")
+	private User ob;
+
+	@OneToOne(mappedBy = "campaign", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	private BenificaryUser benificaryUser;
+
+	@OneToOne(mappedBy = "campaign", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	private BenificaryRelative benificaryRelative;
+
+	@OneToOne(mappedBy = "campaign", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	private BenificaryOther benificaryOther;
+}

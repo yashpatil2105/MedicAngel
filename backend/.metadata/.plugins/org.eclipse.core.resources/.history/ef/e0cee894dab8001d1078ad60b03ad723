@@ -1,0 +1,22 @@
+package com.app.repository;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+
+import com.app.pojos.User;
+
+public interface UserRepository extends JpaRepository<User, Integer> {
+
+	Optional<User> findByEmail(String email);
+	
+	@Modifying //For DML
+	@Query("update User u set u.firstName=?1, u.lastName=?2 where u.id=?3")
+	int updateProfile(String firstName,String lastName,Integer date);
+	
+	
+    
+
+}

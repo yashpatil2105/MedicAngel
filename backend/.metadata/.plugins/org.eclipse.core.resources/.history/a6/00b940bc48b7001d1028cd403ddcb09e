@@ -1,0 +1,73 @@
+package com.app.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.app.pojos.BenificaryOther;
+import com.app.pojos.BenificaryRelative;
+import com.app.pojos.BenificaryUser;
+import com.app.pojos.Campaign;
+import com.app.pojos.User;
+import com.app.repository.CampaignRepository;
+import com.app.services.UserService;
+
+
+@RestController
+@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/user")
+public class UserController {
+	
+	   @Autowired
+	   private UserService userService;
+	   
+	   @Autowired
+	   private CampaignRepository campaignRepo;
+	   
+//	   @PostMapping("/signup")
+//	   public User addUser(@RequestBody User user){
+//		   return userService.addNewUser(user);
+//	   }
+	   
+	   @GetMapping("/profile")
+	   public User showUser(Authentication auth) {
+		   System.out.println("Auth : "+ auth.getPrincipal());
+		   return userService.getUser((String) auth.getPrincipal());
+	   }
+	   
+	   @GetMapping("/campaign")
+	   public List<Campaign> showCampaign(Authentication auth) {
+		   System.out.println("Auth : "+ auth.getPrincipal());
+		   return userService.getCampaign((String) auth.getPrincipal());
+	   }
+	   
+	   @PostMapping("/campaign")
+	   public Campaign addCampaign(Authentication auth, @RequestBody Campaign campaign){
+		   return userService.addNewcampaign(auth ,campaign);
+	   }
+	  
+	   
+	   @PostMapping("/benificary/user")
+	   public BenificaryUser addUserBenificary(@RequestBody BenificaryUser user){
+		   return userService.addNewUserBenificary(user);
+	   }
+	   
+	   @PostMapping("/benificary/relative/")
+	   public BenificaryRelative addRelativeBenificary(@RequestBody BenificaryRelative relative){
+		  
+		   return userService.addNewRelativeBenificary(relative);
+	   }
+	   
+	   @PostMapping("/benificary/other")
+	   public BenificaryOther addOtherBenificary(@RequestBody BenificaryOther other){
+		   return userService.addNewOtherBenificary(other);
+	   }
+
+}

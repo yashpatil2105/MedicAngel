@@ -1,0 +1,18 @@
+package com.app.services;
+
+import java.util.List;
+import java.util.Set;
+
+import com.app.dto.CampaignDto;
+import com.app.pojos.Campaign;
+
+
+public interface CampaignService {
+	
+	List<CampaignDto> getAllCampaign();
+
+	Campaign getCampaign(Integer campId);
+
+	Set<Campaign> deactiveCampaign();
+
+}
