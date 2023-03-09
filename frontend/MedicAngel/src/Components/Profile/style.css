@@ -1,0 +1,38 @@
+.innerdis{
+  margin-left:20vw;
+  padding:1px 16px;
+  height:auto;
+  text-align: justify;
+}
+
+.u{
+  list-style-type: none;
+  margin: 0;
+  padding: auto;
+  width: 20vw;
+  background-color: #3e3b3b;
+  position: absolute;
+  height: 100%;
+  overflow: auto;
+}
+
+.l a {
+  border-bottom: 1px solid rgb(255, 255, 255);
+  font-weight: bold ;
+  font-size: large;
+  display: block;
+  color:white;
+  padding: 8px 25px;
+  text-decoration: none;
+  text-align: left;
+}
+
+.l a.active {
+  background-color: lightblue;
+  color: white;
+}
+
+.l a:hover:not(.active) {
+  background-color: rgb(204, 201, 201);
+  color: black;
+}

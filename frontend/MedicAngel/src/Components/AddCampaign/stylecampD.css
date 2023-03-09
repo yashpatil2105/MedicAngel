@@ -1,0 +1,15 @@
+.divImg{
+    text-align:center;
+    padding:3%;
+    border:thin solid black;
+  }
+
+.inputImg{
+    display: none;
+  }
+.labelImg{
+    cursor:pointer;
+  }
+#imageName{
+    color:green;
+  }
