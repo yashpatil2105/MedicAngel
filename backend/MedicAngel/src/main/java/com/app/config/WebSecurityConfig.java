@@ -46,7 +46,7 @@ public class WebSecurityConfig {
 		.antMatchers("/").permitAll()
 		.antMatchers("/admin").hasRole("ADMIN")
 		.antMatchers("/user").hasRole("CUSTOMER")
-		.antMatchers("/campaign/**","/*/image", "/auth/**", "/swagger*/**", "/v*/api-docs/**").permitAll() // enabling global
+		.antMatchers("/campaign/**","/*/image", "/auth/**", "/swagger*/**", "/v*/api-docs/**","/donar/**").permitAll() // enabling global
 																										// access to all
 																										// urls with
 																										// /auth

@@ -1,25 +1,21 @@
 package com.app.pojos;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ColumnResult;
-import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedNativeQuery;
 import javax.persistence.OneToOne;
-import javax.persistence.SqlResultSetMapping;
 
 import org.springframework.beans.factory.annotation.Value;
 
-import com.app.dto.CampaignAdminDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
@@ -64,8 +60,7 @@ public class Campaign extends BaseEntity {
 	@Column(length = 100)
 	private String ailment;
 
-	@Column(name = "no_Of_Donar")
-	private int noOfDonar;
+
 	
 	@Column(name = "image_path")
 	private String imagePath;
@@ -78,8 +73,12 @@ public class Campaign extends BaseEntity {
 			  name = "campaign_donar", 
 			  joinColumns = @JoinColumn(name = "campaign_id"), 
 			  inverseJoinColumns = @JoinColumn(name = "donar_id"))
-	private Set<Donar> donars;
-   
+	private Set<Donar> donars = new HashSet<Donar>();
+    
+	
+	@Column(name = "no_Of_Donar")
+	private int noOfDonar=donars.size();
+	
 	@JsonIgnore
 	@ManyToOne()
 	@JoinColumn(name = "user_id")
@@ -93,4 +92,8 @@ public class Campaign extends BaseEntity {
 
 	@OneToOne(mappedBy = "campaign",cascade = CascadeType.ALL, orphanRemoval = true)
 	private BenificaryOther benificaryOther;
+	
+//	public void setDonars(Set<Donar> donars) {
+//	    this.donars = donars;
+//	  }  
 }

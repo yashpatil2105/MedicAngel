@@ -1,0 +1,9 @@
+package com.app.services;
+
+import com.app.pojos.Donar;
+
+public interface DonarService {
+	
+	void setDonarDetails(Donar donar);
+
+}

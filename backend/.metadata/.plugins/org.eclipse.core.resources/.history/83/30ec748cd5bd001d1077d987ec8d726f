@@ -1,0 +1,7 @@
+package com.app.services;
+
+public interface Donarservice {
+	
+	void setDonarDetails(Donar donar);
+
+}
