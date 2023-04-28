@@ -1,0 +1,11 @@
+package com.app.dto;
+
+import com.app.pojos.Donar;
+
+public class PaymentVerifyDto {
+
+	private RazorpayResponse razorpayResponse;
+	
+	private Donar donar;
+	
+}

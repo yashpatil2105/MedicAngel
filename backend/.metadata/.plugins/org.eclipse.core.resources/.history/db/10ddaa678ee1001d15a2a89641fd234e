@@ -1,0 +1,85 @@
+package com.app.controller;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import javax.xml.bind.DatatypeConverter;
+
+import org.json.JSONObject;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.app.dto.CallbackSuccess;
+import com.razorpay.Order;
+import com.razorpay.RazorpayClient;
+import com.razorpay.RazorpayException;
+
+import io.jsonwebtoken.SignatureException;
+@RestController
+@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/pay")
+public class PaymentController {
+	 private static final String HMAC_SHA256_ALGORITHM = "HmacSHA256";
+	@PostMapping("/order/{amount}")
+	public String paymentOrder(@PathVariable Integer amount)
+	{
+		System.out.println(amount);
+		try {
+			  var razorpay = new RazorpayClient("rzp_test_qZG2ZZt5Yb7hBG","D03SqDw8IJCcMxGz3RaD91ep");
+			  JSONObject orderRequest = new JSONObject();
+			  orderRequest.put("amount", amount*100); // amount in the smallest currency unit
+			  orderRequest.put("currency", "INR");
+			  orderRequest.put("receipt", "order_rcptid_");
+			  Order order = razorpay.orders.create(orderRequest);
+			  System.out.println(order);
+			  return order.toString();
+			} catch (RazorpayException e) {
+			  System.out.println(e.getMessage());
+			}
+		 return "Failed";
+		
+	}
+	
+	
+	
+	@PostMapping("/verify")
+	public void paymentVerify(@RequestBody CallbackSuccess callback) throws java.security.SignatureException
+	{
+		System.out.println(callback);
+		String generated_signature = calculateRFC2104HMAC(callback.getRazorpay_order_id() + "|" + callback.getRazorpay_payment_id(), "rzp_test_qZG2ZZt5Yb7hBG");
+
+		  if (generated_signature == callback.getRazorpay_signature()) {
+		    System.out.println( "payment is successfull");
+		  }
+		
+	}
+	
+    public static String calculateRFC2104HMAC(String data, String secret)
+    throws java.security.SignatureException
+    {
+        String result;
+        try {
+
+            // get an hmac_sha256 key from the raw secret bytes
+            SecretKeySpec signingKey = new SecretKeySpec(secret.getBytes(), HMAC_SHA256_ALGORITHM);
+
+            // get an hmac_sha256 Mac instance and initialize with the signing key
+            Mac mac = Mac.getInstance(HMAC_SHA256_ALGORITHM);
+            mac.init(signingKey);
+
+            // compute the hmac on input data bytes
+            byte[] rawHmac = mac.doFinal(data.getBytes());
+
+            // base64-encode the hmac
+            result = DatatypeConverter.printHexBinary(rawHmac).toLowerCase();
+
+        } catch (Exception e) {
+            throw new SignatureException("Failed to generate HMAC : " + e.getMessage());
+        }
+        return result;
+    }
+
+}

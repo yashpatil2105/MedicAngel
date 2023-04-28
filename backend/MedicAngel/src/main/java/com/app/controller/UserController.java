@@ -20,12 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.app.customexception.ResourceNotFoundException;
-import com.app.pojos.BenificaryOther;
-import com.app.pojos.BenificaryRelative;
-import com.app.pojos.BenificaryUser;
-import com.app.pojos.Campaign;
-import com.app.pojos.User;
-import com.app.repository.CampaignRepository;
+import com.app.enities.BenificaryOther;
+import com.app.enities.BenificaryRelative;
+import com.app.enities.BenificaryUser;
+import com.app.enities.Campaign;
+import com.app.enities.User;
 import com.app.services.ImageHandlingService;
 import com.app.services.UserService;
 
@@ -96,7 +95,7 @@ public class UserController {
 	   
 	// Add REST end point to upload image
 		// URL : http://host:port/employees/{empId}/image , Method=POST
-		@PostMapping(value="/{campId}/image",consumes = "multipart/form-data")
+		@PostMapping(value="/{campId}/image", consumes = "multipart/form-data")
 		public ResponseEntity<?> uploadImageToServerSideFolder(@RequestParam MultipartFile imageFile,
 				@PathVariable Integer campId
 				) throws IOException, ResourceNotFoundException {

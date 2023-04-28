@@ -89,4 +89,16 @@ const uploadCampImage = (id,formData) => {
 }
 
 
-export default { getAll, signin, signup, getUser, getDeactiveCampaign, updateUser, remove ,getDonate, getUserCampaign, uploadCampImage, setBmyself, setUserCampaign, setBrelative, setBfriend, setBother, getDonatePage, setActivateCampaign, getActiveCampaign, deleteCampaignbyId, donarPayment};
+const paymentOrder = (amount) => {
+  return httpClient.post(`pay/order/${amount}`);
+}
+
+const paymentVerify = (razorpayResponse,donar,id) => {
+  return httpClient.post(`pay/verify/${id}`,{razorpayResponse,donar});
+}
+
+const getDonars = (id) => {
+  return httpClient.get(`donar/${id}/campaign`);
+}
+
+export default { getAll, signin, signup, getUser, getDeactiveCampaign, updateUser, remove ,getDonate, getUserCampaign, uploadCampImage, setBmyself, setUserCampaign, setBrelative, setBfriend, setBother, getDonatePage, setActivateCampaign, getActiveCampaign, deleteCampaignbyId, donarPayment,paymentOrder,paymentVerify,getDonars};

@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-import com.app.pojos.Campaign;
-import com.app.pojos.User;
+import com.app.enities.Campaign;
+import com.app.enities.User;
 
 public interface CampaignRepository extends JpaRepository<Campaign, Integer> {
 	

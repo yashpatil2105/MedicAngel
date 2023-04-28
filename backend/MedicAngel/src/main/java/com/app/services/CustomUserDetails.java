@@ -7,7 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.app.pojos.User;
+import com.app.enities.User;
 
 @SuppressWarnings("serial")
 public class CustomUserDetails implements UserDetails {

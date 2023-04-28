@@ -16,9 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.app.customexception.ResourceNotFoundException;
 import com.app.dto.ApiResponse;
-import com.app.pojos.Campaign;
+import com.app.enities.Campaign;
 import com.app.repository.CampaignRepository;
-import com.app.repository.UserRepository;
 
 @Service
 @Transactional
@@ -28,9 +27,7 @@ public class ImageHandlingServiceImpl implements ImageHandlingService {
 	@Value("${content.upload.folder}")
 	private String folderName;
 	// dep : dao layer i/f :
-	@Autowired
-	private UserRepository userRepo;
-	
+
 	@Autowired
 	private CampaignRepository campRepo;
 

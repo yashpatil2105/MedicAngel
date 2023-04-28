@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.app.dto.CampaignAdminDto;
 import com.app.dto.CampaignDto;
-import com.app.pojos.Campaign;
+import com.app.enities.Campaign;
 
 
 public interface CampaignService {

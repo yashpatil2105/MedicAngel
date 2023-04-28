@@ -12,7 +12,7 @@ const AddUser = () => {
   const [currPassword, setCurrPassword] = useState('');
   const [role, setRole] = useState('');
   const [mobileNo, setMobileno] = useState('');
-  const [isInvalid, setIsValid] = useState('false');
+  // const [isInvalid, setIsValid] = useState('false');
 
 
   const history = useHistory();

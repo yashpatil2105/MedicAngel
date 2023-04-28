@@ -30,21 +30,21 @@ const Friend = (props) => {
     //     pojo.setMyself(myself, 1);
     // }
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        userService
-            .getUser()
-            .then((user) => {
-                setLastname(user.data.lastName);
-                setEmail(user.data.email);
-                setPassword(user.data.password);
-                setRole(user.data.role);
-                setMobileno(user.data.mobileNo);
-            })
-            .catch((error) => {
-                console.log('Something went wrong', error);
-            });
-    }, []);
+    //     userService
+    //         .getUser()
+    //         .then((user) => {
+    //             setLastname(user.data.lastName);
+    //             setEmail(user.data.email);
+    //             setPassword(user.data.password);
+    //             setRole(user.data.role);
+    //             setMobileno(user.data.mobileNo);
+    //         })
+    //         .catch((error) => {
+    //             console.log('Something went wrong', error);
+    //         });
+    // }, []);
 
     return (<div>
 
@@ -95,20 +95,23 @@ const Friend = (props) => {
 
 
                 <br></br>
-                <div className="row">
-                    <div className="col-md-1" ></div>
-                    <div className="col-md-2">
-                        <label htmlFor='gender' style={{ align: "right", color: "GrayText", fontWeight: "inherit", verticalAlign: "bottom" }} >Gender</label>
-                    </div>
-                    <div className="col-md-5">
-                        <select id="gender" className='form-control col-4' placeholder='Enter Gender' style={{ color: "black" }}>
-                            <option value="MALE" style={{ textAlign: "center" }}>MALE</option>
-                            <option value="FEMALE">FEMALE</option>
-                            <option value="OTHER">OTHER</option>
-                        </select>
-                    </div>
-                    <div className="col-md-4"></div>
-                </div>
+        <div className="row">
+          <div className="col-md-1" ></div>
+          <div className="col-md-2">
+            <label htmlFor='gender' style={{ align: "right", color: "GrayText", fontWeight: "inherit", verticalAlign: "bottom" }} >Gender</label>
+          </div>
+          <div className="col-md-5">
+
+            <select id="gender" className='form-control col-4' placeholder='Enter Gender'  style={{ color: "black" }}>
+              <option value="null" >Choose Gender</option>
+              <option value="MALE">MALE</option>
+              <option value="FEMALE">FEMALE</option>
+              <option value="OTHER">OTHER</option>
+            </select>
+
+          </div>
+          <div className="col-md-4"></div>
+        </div>
                 <br></br>
                 <div className="row">
                     <div className="col-md-1" ></div>

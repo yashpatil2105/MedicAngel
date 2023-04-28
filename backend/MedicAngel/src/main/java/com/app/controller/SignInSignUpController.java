@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.AuthRequest;
 import com.app.dto.AuthResp;
+import com.app.enities.User;
 import com.app.jwt_utils.JwtUtils;
-import com.app.pojos.User;
 import com.app.services.UserService;
 
 import lombok.extern.slf4j.Slf4j;

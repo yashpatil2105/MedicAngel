@@ -16,7 +16,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString(exclude = "role")
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDto {

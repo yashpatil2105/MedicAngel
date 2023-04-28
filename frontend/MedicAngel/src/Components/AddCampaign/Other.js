@@ -72,21 +72,25 @@ const Other = (props) => {
                 </div>
 
 
+
                 <br></br>
-                <div className="row">
-                    <div className="col-md-1" ></div>
-                    <div className="col-md-2">
-                        <label htmlFor='gender' style={{ align: "right", color: "GrayText", fontWeight: "inherit", verticalAlign: "bottom" }} >Gender</label>
-                    </div>
-                    <div className="col-md-5">
-                        <select id="gender" className='form-control col-4' placeholder='Enter Gender' defaultValue={"MALE"}  onChange={(e) => setGender(e.target.value)} style={{ color: "black" }}>
-                            <option value="MALE" style={{ textAlign: "center" }}>MALE</option>
-                            <option value="FEMALE">FEMALE</option>
-                            <option value="OTHER">OTHER</option>
-                        </select>
-                    </div>
-                    <div className="col-md-4"></div>
-                </div>
+        <div className="row">
+          <div className="col-md-1" ></div>
+          <div className="col-md-2">
+            <label htmlFor='gender' style={{ align: "right", color: "GrayText", fontWeight: "inherit", verticalAlign: "bottom" }} >Gender</label>
+          </div>
+          <div className="col-md-5">
+
+            <select id="gender" className='form-control col-4' placeholder='Enter Gender' onClick={(e) => setGender(e.target.value)} style={{ color: "black" }}>
+              <option value="null" >Choose Gender</option>
+              <option value="MALE">MALE</option>
+              <option value="FEMALE">FEMALE</option>
+              <option value="OTHER">OTHER</option>
+            </select>
+
+          </div>
+          <div className="col-md-4"></div>
+        </div>
                 <br></br>
                 <div className="row">
                     <div className="col-md-1" ></div>

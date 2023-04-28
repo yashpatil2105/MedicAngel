@@ -5,11 +5,11 @@ import java.util.Set;
 import org.springframework.security.core.Authentication;
 
 import com.app.customexception.ResourceNotFoundException;
-import com.app.pojos.BenificaryOther;
-import com.app.pojos.BenificaryRelative;
-import com.app.pojos.BenificaryUser;
-import com.app.pojos.Campaign;
-import com.app.pojos.User;
+import com.app.enities.BenificaryOther;
+import com.app.enities.BenificaryRelative;
+import com.app.enities.BenificaryUser;
+import com.app.enities.Campaign;
+import com.app.enities.User;
 
 public interface UserService {
 

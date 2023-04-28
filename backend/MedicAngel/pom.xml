@@ -9,11 +9,11 @@
 		<version>2.7.8</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>REST_pratice</artifactId>
+	<groupId>com.medicangel</groupId>
+	<artifactId>MedicAngel</artifactId>
 	<version>0.0.1</version>
-	<name>REST_pratice</name>
-	<description>Spring rest pratice </description>
+	<name>MedicAngel</name>
+	<description>MedicAngel is online crowdfunding platfrom for medical expenses for needy peoples</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -76,6 +76,11 @@
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
 			<version>1.6.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.razorpay</groupId>
+			<artifactId>razorpay-java</artifactId>
+			<version>1.4.3</version>
 		</dependency>
 	</dependencies>
 

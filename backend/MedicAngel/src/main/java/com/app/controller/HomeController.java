@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.customexception.ResourceNotFoundException;
 import com.app.dto.CampaignDto;
-import com.app.pojos.Campaign;
+import com.app.enities.Campaign;
 import com.app.services.CampaignService;
 import com.app.services.ImageHandlingService;
 

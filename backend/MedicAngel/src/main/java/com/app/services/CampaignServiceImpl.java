@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.app.dto.CampaignAdminDto;
 import com.app.dto.CampaignDto;
-import com.app.pojos.Campaign;
-import com.app.pojos.User;
+import com.app.enities.Campaign;
+import com.app.enities.User;
 import com.app.repository.CampaignRepository;
 import com.app.repository.UserRepository;
 
@@ -20,6 +20,7 @@ public class CampaignServiceImpl implements CampaignService{
 	
 	@Autowired
 	private CampaignRepository campaignRepo;
+	
 	@Autowired
 	private UserRepository userRepo;
 	
@@ -54,13 +55,14 @@ public class CampaignServiceImpl implements CampaignService{
 	}
 
 
+	@SuppressWarnings("unused")
 	@Override
 	public void deleteCampaignId(Integer campId) {
 		System.out.println("campid"+campId);
 		Campaign camp = campaignRepo.findById(campId).orElseThrow(() -> new UsernameNotFoundException("Invalid Campaign ID"));
-	    User user = userRepo.findById(camp.getOb().getId()).orElseThrow(() -> new UsernameNotFoundException("Invalid User ID"));
+		User user = userRepo.findById(camp.getOb().getId()).orElseThrow(() -> new UsernameNotFoundException("Invalid User ID"));
 	 
-	    //camp.setBenificaryUser(null);
+//      camp.setBenificaryUser(null);
 //		camp.setBenificaryOther(null);
 //		camp.setBenificaryRelative(null);
 //		camp.setOb(null);

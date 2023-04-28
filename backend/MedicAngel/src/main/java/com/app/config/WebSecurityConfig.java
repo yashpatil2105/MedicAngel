@@ -19,6 +19,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.app.filters.JWTRequestFilter;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @EnableWebSecurity // mandatory
 @Configuration // mandatory
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -35,7 +37,7 @@ public class WebSecurityConfig {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		
+		log.info("in SecurityFilterChain");
 		http.cors().and().csrf().disable().
 		exceptionHandling().
 		authenticationEntryPoint((request, response, ex) -> {
@@ -46,17 +48,18 @@ public class WebSecurityConfig {
 		.antMatchers("/").permitAll()
 		.antMatchers("/admin").hasRole("ADMIN")
 		.antMatchers("/user").hasRole("CUSTOMER")
-		.antMatchers("/campaign/**","/*/image", "/auth/**", "/swagger*/**", "/v*/api-docs/**","/donar/**").permitAll() // enabling global
+		.antMatchers("/campaign/**","/pay/**","/*/image", "/auth/**", "/swagger*/**", "/v*/api-docs/**","/donar/**").permitAll() // enabling global
 																										// access to all
 																										// urls with
 																										// /auth
 				// only required for JS clnts (react / angular)
-		.antMatchers(HttpMethod.OPTIONS).permitAll().
-		anyRequest().authenticated().
-		and().
-		sessionManagement()
-		.sessionCreationPolicy(SessionCreationPolicy.STATELESS).
-		and()
+		.antMatchers(HttpMethod.OPTIONS).permitAll()
+		.anyRequest()
+		.authenticated()
+		.and()
+		.sessionManagement()
+		.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+		.and()
 		.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
 
 		return http.build();
@@ -65,6 +68,7 @@ public class WebSecurityConfig {
 	// configure auth mgr bean : to be used in Authentication REST controller
 	@Bean
 	public AuthenticationManager authenticatonMgr(AuthenticationConfiguration config) throws Exception {
+		log.info("in AuthenticationManager");
 		return config.getAuthenticationManager();
 	}
 

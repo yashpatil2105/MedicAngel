@@ -1,0 +1,7 @@
+package com.app.services;
+
+public interface PaymentService {
+
+	String calculateRFC2104HMAC(String data, String secret);
+
+}

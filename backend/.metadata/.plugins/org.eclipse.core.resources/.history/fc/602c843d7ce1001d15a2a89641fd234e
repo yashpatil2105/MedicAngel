@@ -1,0 +1,59 @@
+package com.app.controller;
+
+import org.json.JSONObject;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.razorpay.Order;
+import com.razorpay.RazorpayClient;
+import com.razorpay.RazorpayException;
+@RestController
+@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/pay")
+public class PaymentController {
+	
+	@PostMapping("/order/{amount}")
+	public String paymentOrder(@PathVariable Integer amount)
+	{
+		System.out.println(amount);
+		try {
+			  var razorpay = new RazorpayClient("rzp_test_qZG2ZZt5Yb7hBG","D03SqDw8IJCcMxGz3RaD91ep");
+			  JSONObject orderRequest = new JSONObject();
+			  orderRequest.put("amount", amount*100); // amount in the smallest currency unit
+			  orderRequest.put("currency", "INR");
+			  orderRequest.put("receipt", "order_rcptid_");
+			  Order order = razorpay.orders.create(orderRequest);
+			  System.out.println(order);
+			  return order.toString();
+			} catch (RazorpayException e) {
+			  System.out.println(e.getMessage());
+			}
+		 return "Failed";
+		
+	}
+	
+	
+	
+	@PostMapping("/verify")
+	public String paymentVerify(String donar)
+	{
+		System.out.println(donar);
+//		try {
+//			  var razorpay = new RazorpayClient("rzp_test_qZG2ZZt5Yb7hBG","D03SqDw8IJCcMxGz3RaD91ep");
+//			  JSONObject orderRequest = new JSONObject();
+//			  orderRequest.put("amount", donar.getAmount()*100); // amount in the smallest currency unit
+//			  orderRequest.put("currency", "INR");
+//			  orderRequest.put("receipt", "order_rcptid_");
+//			  Order order = razorpay.orders.create(orderRequest);
+//			  System.out.println(order);
+//			  return order.toString();
+//			} catch (RazorpayException e) {
+//			  System.out.println(e.getMessage());
+//			}
+		 return "Failed";
+		
+	}
+}

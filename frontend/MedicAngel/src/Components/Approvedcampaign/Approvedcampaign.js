@@ -86,26 +86,6 @@ const Approvedcampaign = (props) => {
                 <td>Rs. {campaign.amount}</td>
                 <td>{campaign.endDate}</td>
                 <td>{campaign.ailment}</td>
-                {/* <td>
-
-                <button
-                   className='btn btn-info'
-                    onClick={() => {
-                      handleApproval(campaign.id);
-                    }}
-                  >
-                    Approve
-                  </button>
-                </td> */}
-
-                {/* <td>
-                  <Link
-                    className='btn btn-info'
-                    to={`/uploadImage/${employee.id}`}
-                  >
-                    Image Upload
-                  </Link>
-                </td> */}
                 <td>
                   <button
                     className='btn btn-danger ml-2'
